@@ -15,7 +15,7 @@ import { useEffect } from "react";
 function App() {
   const getAllListings = async () => {
     let allListings = [];
-    await axios.get(`${import.meta.env.VITE_API_URL}listings`).then((res) => {
+    await axios.get(`${import.meta.env.VITE_API_URL}/listings`).then((res) => {
       allListings = res.data;
     });
     return allListings;

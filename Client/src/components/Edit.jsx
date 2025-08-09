@@ -16,7 +16,7 @@ export default function Edit() {
   useEffect(() => {
     // console.log(id)
     let getData = async () => {
-      await axios.get(`${import.meta.env.VITE_API_URL}listings/${id}`).then((res) => {
+      await axios.get(`${import.meta.env.VITE_API_URL}/listings/${id}`).then((res) => {
         setData(res.data);
         const transformedImg = res.data.image?.url.replace(
           "/upload",
@@ -42,7 +42,7 @@ export default function Edit() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .put(`${import.meta.env.VITE_API_URL}listings/${id}`, data, {
+      .put(`${import.meta.env.VITE_API_URL}/listings/${id}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

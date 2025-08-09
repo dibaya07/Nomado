@@ -24,7 +24,7 @@ export default function SignUp() {
     e.preventDefault();
     let endpoints = isSignUp ? "login" : "signUp";
     await axios
-      .post(`${import.meta.env.VITE_API_URL}user/${endpoints}`, data, {
+      .post(`${import.meta.env.VITE_API_URL}/user/${endpoints}`, data, {
         withCredentials: true,
       })
       .then((res) => {
