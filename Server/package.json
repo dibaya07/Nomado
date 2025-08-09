@@ -1,6 +1,12 @@
 {
-  "engines":{
+  "name": "nomado-server",
+  "version": "1.0.0",
+  "engines": {
     "node": "22.14.0"
+  },
+  "scripts": {
+    "start": "node index.js", 
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
