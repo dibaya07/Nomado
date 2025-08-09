@@ -25,7 +25,7 @@ export default function ListingItem() {
     const getUser = async () => {
       try {
         await axios
-          .get(`${import.meta.env.VITE_API_URL}/user/owner`, {
+          .get(`${import.meta.env.VITE_API_URL}user/owner`, {
             withCredentials: true,
           })
           .then((res) => {
@@ -39,7 +39,7 @@ export default function ListingItem() {
   }, []);
 
   const item = async () => {
-    await axios.get(`${import.meta.env.VITE_API_URL}/listings/${itemId}`).then((res) => {
+    await axios.get(`${import.meta.env.VITE_API_URL}listings/${itemId}`).then((res) => {
       setListing(res.data);
     });
   };
@@ -65,13 +65,13 @@ export default function ListingItem() {
   };
 
   const handleReviewSubmit = async () => {
-    await axios.post(`${import.meta.env.VITE_API_URL}/reviews`, reviews);
+    await axios.post(`${import.meta.env.VITE_API_URL}reviews`, reviews);
     setReviews({});
   };
 
   useEffect(() => {
     const review = async () => {
-      await axios.get(`${import.meta.env.VITE_API_URL}/reviews/${itemId}`).then((res) => {
+      await axios.get(`${import.meta.env.VITE_API_URL}reviews/${itemId}`).then((res) => {
         setAllReviews(res.data);
       });
     };
