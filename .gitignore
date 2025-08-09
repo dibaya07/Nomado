@@ -1,0 +1,16 @@
+# Ignore backend files
+server/node_modules/
+server/.env
+
+# Ignore root-level stuff (if any)
+node_modules/
+.env
+*.log
+logs
+.DS_Store
+Thumbs.db
+
+# Frontend (extra precaution, even though client/.gitignore handles this)
+client/node_modules/
+client/build/
+client/.env
