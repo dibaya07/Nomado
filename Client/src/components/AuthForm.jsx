@@ -52,14 +52,16 @@ export default function SignUp() {
           <input
             type="text"
             placeholder="Enter your username"
-            className="rounded-md p-1 border border-solid border-gray-500 my-3"
+            className={`rounded-md p-1 border border-solid border-gray-500 my-3 ${
+              isSignUp ? "hidden" : "inline-block"
+            }`}
             name="username"
             onChange={handleChange}
           />
           <input
             type="text"
             placeholder="Enter your email"
-            className={`rounded-md p-1 border border-solid border-gray-500 my-3 ${ isSignUp ? "hidden" : "inline-block" }`}
+            className="rounded-md p-1 border border-solid border-gray-500 my-3"
             name="email"
             onChange={handleChange}
           />
