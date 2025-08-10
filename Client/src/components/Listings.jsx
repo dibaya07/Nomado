@@ -23,7 +23,7 @@ const Listings = () => {
         {listingItems?.map((item) => {
           return (
             <div
-              className="listing  sm:h-96 sm:w-64 h-80 w-56  m-4 pb-6 overflow-hidden"
+              className="listing  sm:h-96 sm:w-64 h-48 w-32  m-4 pb-6 overflow-hidden"
               key={item._id}
               onClick={() => handleClick(item._id)}
             >
@@ -35,8 +35,8 @@ const Listings = () => {
                 />
               </span>
               <div className="details flex flex-col px-3">
-                <span className="text-lg font-semibold">{item.title}</span>
-                <span className="text-base font-semibold text-gray-500">
+                <span className="text-sm font-semibold overflow-hidden h-10">{item.title}</span>
+                <span className="text-sm font-semibold text-gray-500">
                   {item.price}/night
                 </span>
               </div>

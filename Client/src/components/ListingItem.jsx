@@ -170,7 +170,7 @@ export default function ListingItem() {
             );
           })}
         </div>
-        <div className="review  text-black w-fit h-fit p-4 flex flex-col">
+        <div className="review  text-black  h-fit p-4 flex flex-col">
           <fieldset className="starability-slot">
             <legend>rating:</legend>
             <input
