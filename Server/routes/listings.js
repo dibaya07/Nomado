@@ -13,6 +13,7 @@ const { storage } = require("../cloudConfig.js");
 const upload = multer({ storage });
 const { listingSchema } = require("../schema.js");
 
+
 const validateListing = (req, res, next) => {
   let { error } = listingSchema.validate(req.body, { convert: true });
   if (error) {
@@ -22,7 +23,7 @@ const validateListing = (req, res, next) => {
   }
 };
 
-router.get("/", getAllListings);
+router.get("/",verifyToken, getAllListings);
 router.get("/:id", getListing);
 router.post(
   "/",

@@ -4,7 +4,7 @@ import { createContext } from "react";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [token, setToken] = useState(localStorage.getItem("nomado-token") || "");
   const [isLogin, setIsLogin] = useState(token ? true : false);
 
   useEffect(() => {

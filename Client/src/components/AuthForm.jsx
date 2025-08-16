@@ -28,7 +28,7 @@ export default function SignUp() {
         withCredentials: true,
       })
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("nomado-token", res.data.token);
         setToken(res.data.token);
         setIsLogin(true);
         navigate("/");

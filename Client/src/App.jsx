@@ -11,12 +11,20 @@ import ListingItem from "./components/ListingItem";
 import Edit from "./components/Edit";
 import AuthForm from "./components/AuthForm";
 import { useEffect } from "react";
+import { useContext } from "react";
+import { AuthContext } from "./components/Context";
 
 function App() {
+    const { isLogin, setIsLogin, token, setToken } = useContext(AuthContext);
+
+
   const getAllListings = async () => {
     let allListings = [];
     await axios.get(`${import.meta.env.VITE_API_URL}/listings`).then((res) => {
-      allListings = res.data;
+      // console.log(res.data.isToken)
+      setIsLogin(res.data.isToken)
+      // console.log(res.data.val)
+      allListings = res.data.val;
     });
     return allListings;
   };

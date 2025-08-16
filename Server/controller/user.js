@@ -19,7 +19,7 @@ const userSignUp = async (req, res) => {
   const newUser = await User.create({username, email, password: hashed });
   let token = await jwt.sign({ username, id: newUser._id }, process.env.TOKEN_KEY);
 
-  res.cookie("token", token, {
+  res.cookie("nomado-token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === production,
     sameSite:process.env.NODE_ENV === production ? "none" :"Lax",
@@ -38,13 +38,11 @@ const userLogin = async (req, res) => {
   let user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
     let token = jwt.sign({ email, id: user._id }, process.env.TOKEN_KEY);
-    res.cookie("token", token, {
+    res.cookie("nomado-token", token, {
       httpOnly: true,
-      // secure: false,
-      // sameSite: "Lax",
-       secure: true,
-    sameSite: "none",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+     secure: process.env.NODE_ENV === production,
+    sameSite:process.env.NODE_ENV === production ? "none" :"Lax",
+   maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     return res.json({ token, message: "success" });
   } else {
@@ -53,13 +51,11 @@ const userLogin = async (req, res) => {
 };
 
 const userLogout = (req, res) => {
-  res.clearCookie("token", {
+  res.clearCookie("nomado-token", {
     httpOnly: true,
-    // secure: false,
-    // sameSite: "Lax",
-     secure: true,
-    sameSite: "none",
-  });
+    secure: process.env.NODE_ENV === production,
+    sameSite:process.env.NODE_ENV === production ? "none" :"Lax",
+   });
 
   return res.status(200).json({ message: "Logged out successfully" });
 };

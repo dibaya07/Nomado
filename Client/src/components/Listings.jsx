@@ -32,6 +32,7 @@ const Listings = () => {
                   className="rounded-3xl  h-[91%] w-full"
                   src={item.image?.url}
                   alt="image"
+                  loading="lazy"
                 />
               </span>
               <div className="details flex flex-col px-3">
