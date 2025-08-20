@@ -23,20 +23,20 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let endpoints = isSignUp ? "login" : "signUp";
-    await axios
+    let res = await axios
       .post(`${import.meta.env.VITE_API_URL}/user/${endpoints}`, data, {
         withCredentials: true,
       })
-      .then((res) => {
+      try {
         localStorage.setItem("nomado-token", res.data.token);
         setToken(res.data.token);
         setIsLogin(true);
         navigate("/");
-      })
-      .catch((data) => {
-        console.log(data.response?.data?.message);
-        setError(data.response?.data?.message);
-      });
+      }
+      catch{
+        console.log(response?.data?.message);
+        setError(response?.data?.message);
+      };
   };
 
   return (

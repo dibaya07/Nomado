@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+
+import { useContext } from "react";
+import { AuthContext } from "./Context.jsx";
+
 
 const Listings = () => {
-  const listings = useLoaderData();
-  const [listingItems, setListingItems] = useState();
+  // const listings = useLoaderData();
+  const { isLogin, setIsLogin, token, setToken,allListings,setAllListings } = useContext(AuthContext);
+  // const [listingItems, setListingItems] = useState();
   const navigate = useNavigate();
+  // const [loaded, setLoaded] = useState(false)
 
-  useEffect(() => {
-    setListingItems(listings);
-  }, [listings]);
+  // useEffect(() => {
+  //   setListingItems(listings);
+  // }, [listings]);
 
   const handleClick = (id) => {
     navigate("/listingItem", { state: { itemId: id } });
@@ -20,19 +26,20 @@ const Listings = () => {
         All Listed Places &gt;{" "}
       </h2>
       <div className="listings flex flex-wrap justify-evenly ">
-        {listingItems?.map((item) => {
+        {allListings?.map((item) => {
           return (
             <div
-              className="listing  sm:h-96 sm:w-64 h-48 w-32  m-4 pb-6 overflow-hidden"
+              className="listing  sm:h-80 sm:w-60 h-48 w-32  m-4 pb-6 overflow-hidden"
               key={item._id}
               onClick={() => handleClick(item._id)}
             >
               <span className="img flex h-3/4 w-full ">
                 <img
-                  className="rounded-3xl  h-[91%] w-full"
-                  src={item.image?.url}
-                  alt="image"
+                  className="rounded-3xl  h-full w-full"
+                  src={item.image?.url || ""}
+                  alt={item.title || "image"}
                   loading="lazy"
+                  // onLoad={()=>setLoaded(true)}
                 />
               </span>
               <div className="details flex flex-col px-3">

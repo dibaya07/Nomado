@@ -17,6 +17,10 @@ const Navbar = () => {
       localStorage.removeItem("token");
       setToken("");
       setIsLogin(false);
+      navigate(`/`)
+    }else{
+      navigate(`/authForm`)
+      console.log(isLogin)
     }
   };
 
@@ -26,9 +30,9 @@ const Navbar = () => {
         className="logo  flex justify-center items-center ml-6 cursor-pointer"
         onClick={() => navigate("/")}
       >
-        <span className="title text-sm sm:text-2xl font-semibold text-orange-400   flex">
+        <button className="title text-sm sm:text-2xl font-semibold text-orange-400   flex">
           Nomado
-        </span>
+        </button>
       </div>
       <div className="leftText  flex items-center">
         <Link
@@ -39,30 +43,30 @@ const Navbar = () => {
         </Link>
 
         <Link
-          to={isLogin ? `/add-list` : `/authForm`}
-          className="add text-center  sm:hidden inline-block bg-slate-300 py-2 px-3 mx-2
- sm:py-3 sm:px-8 sm:mx-8 rounded-3xl"
+          to={isLogin ? "/add-list" : "/authForm"}
+          className={`add text-center  sm:hidden inline-block bg-slate-300 py-2 px-3 mx-2
+ sm:py-3 sm:px-8 sm:mx-8 rounded-3xl`}
         >
           <MdFormatListBulletedAdd />
         </Link>
 
-        <Link
+        <button
           to={isLogin ? `/` : `/authForm`}
           onClick={checkLogin}
           className="menu hidden sm:inline-block  text-center bg-slate-300 py-2 px-3 mx-2
  sm:py-3 sm:px-8 sm:mx-8 rounded-3xl"
         >
           {isLogin ? "Logout" : "Login"}
-        </Link>
+        </button>
 
-        <Link
-          to={isLogin ? `/` : `/authForm`}
+        <button
+          // to={isLogin ? `/` : `/authForm`}
           onClick={checkLogin}
           className="menu sm:hidden inline-block text-center bg-slate-300 py-2 px-3 mx-2
  sm:py-3 sm:px-8 sm:mx-8 rounded-3xl"
         >
           {isLogin ? <CiLogout /> : <IoIosLogIn />}
-        </Link>
+        </button>
       </div>
     </div>
   );
