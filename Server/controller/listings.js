@@ -1,10 +1,16 @@
 const Listings = require("../models/listings");
 
 const getAllListings = async (req, res) => {
-  console.log(req.token)
+  try{
+    console.log(req.token)
   let isToken = req.token
   let val = await Listings.find();
   res.json({val,isToken});
+  }
+  catch(err){
+    console.log("getAllListings error", err)
+    res.json({message:"getAllListings error"})
+  }
 };
 const getListing = async (req, res) => {
   let listing = await Listings.findById(req.params.id).populate("owner");

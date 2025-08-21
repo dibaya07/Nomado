@@ -19,14 +19,9 @@ function App() {
 
 
   const getAllListings = async () => {
-    // let allListings = [];
-   let res = await axios.get(`${import.meta.env.VITE_API_URL}/listings`) 
-      // console.log(res.data.isToken)
-      setIsLogin(res.data.isToken)
-      // console.log(res.data.val)
+    let res = await axios.get(`${import.meta.env.VITE_API_URL}/listings`) 
+    setIsLogin(res.data.isToken)
       setAllListings(res.data.val);
-    
-    // return allListings;
   };
 
   useEffect(() => {
@@ -56,3 +51,7 @@ function App() {
 }
 
 export default App;
+
+    // let allListings = [];
+    // console.log(res.data.isToken)
+    // console.log(res.data.val)

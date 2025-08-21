@@ -10,7 +10,7 @@ const Listings = () => {
   const { isLogin, setIsLogin, token, setToken,allListings,setAllListings } = useContext(AuthContext);
   // const [listingItems, setListingItems] = useState();
   const navigate = useNavigate();
-  // const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(false)
 
   // useEffect(() => {
   //   setListingItems(listings);
@@ -34,12 +34,14 @@ const Listings = () => {
               onClick={() => handleClick(item._id)}
             >
               <span className="img flex h-3/4 w-full ">
+              {!loaded && <div className="bg-red-700"/>}
                 <img
                   className="rounded-3xl  h-full w-full"
-                  src={item.image?.url || ""}
-                  alt={item.title || "image"}
+                  // src={item.image?.url || ""}
+                  src={item.image?.url }
+                  alt={item.title || "Title"}
                   loading="lazy"
-                  // onLoad={()=>setLoaded(true)}
+                  onLoad={()=>setLoaded(true)}
                 />
               </span>
               <div className="details flex flex-col px-3">
