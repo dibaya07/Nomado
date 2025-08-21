@@ -4,10 +4,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import {
   Link,
-  useLoaderData,
   useLocation,
   useNavigate,
-  useParams,
 } from "react-router-dom";
 import "./ListingItem.css";
 
@@ -171,7 +169,7 @@ export default function ListingItem() {
           })}
         </div>
         <div className="review  text-black  h-fit p-4 flex flex-col">
-          <fieldset className="starability-slot">
+          {/* <fieldset className="starability-slot">
             <legend>rating:</legend>
             <input
               type="radio"
@@ -202,7 +200,7 @@ export default function ListingItem() {
             <label htmlFor="first-rate5" title="Amazing">
               5 stars
             </label>
-          </fieldset>
+          </fieldset> */}
 
           <textarea
             name="comment"

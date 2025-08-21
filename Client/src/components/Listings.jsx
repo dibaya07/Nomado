@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {  useNavigate } from "react-router-dom";
 
 import { useContext } from "react";
@@ -7,7 +7,7 @@ import { AuthContext } from "./Context.jsx";
 
 const Listings = () => {
   // const listings = useLoaderData();
-  const { isLogin, setIsLogin, token, setToken,allListings,setAllListings } = useContext(AuthContext);
+  const {allListings } = useContext(AuthContext);
   // const [listingItems, setListingItems] = useState();
   const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false)
@@ -26,6 +26,7 @@ const Listings = () => {
         All Listed Places &gt;{" "}
       </h2>
       <div className="listings flex flex-wrap justify-evenly ">
+        {!loaded &&<div className="text-3xl font-semibold">loading...</div>}
         {allListings?.map((item) => {
           return (
             <div
@@ -34,7 +35,6 @@ const Listings = () => {
               onClick={() => handleClick(item._id)}
             >
               <span className="img flex h-3/4 w-full ">
-              {!loaded && <div className="bg-red-700"/>}
                 <img
                   className="rounded-3xl  h-full w-full"
                   // src={item.image?.url || ""}
