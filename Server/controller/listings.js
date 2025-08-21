@@ -2,7 +2,7 @@ const Listings = require("../models/listings");
 
 const getAllListings = async (req, res) => {
   try{
-    console.log(req.token)
+    // console.log(req.token)
   let isToken = req.token
   let val = await Listings.find();
   res.json({val,isToken});
