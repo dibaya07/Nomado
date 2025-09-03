@@ -1,4 +1,5 @@
 const express = require("express");
+const verifyToken = require("../middleware/auth");
 const {
   getAllReviews,
   addReview,
@@ -7,7 +8,7 @@ const {
 const router = express.Router();
 
 router.get("/:id", getAllReviews);
-router.post("/", addReview);
+router.post("/",verifyToken, addReview);
 router.delete("/:id", deleteReview);
 
 module.exports = router;

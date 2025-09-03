@@ -17,7 +17,11 @@ const Listings = () => {
   // }, [listings]);
 
   const handleClick = (id) => {
-    navigate("/listingItem", { state: { itemId: id } });
+    if(!id){
+      console.log("listing id is missing ")
+      return
+    }
+    navigate("/listingItem", { state: { itemId: id  } });
   };
 
   return (
@@ -32,7 +36,7 @@ const Listings = () => {
             <div
               className="listing  sm:h-80 sm:w-60 h-48 w-32  m-4 pb-6 overflow-hidden"
               key={item._id}
-              onClick={() => handleClick(item._id)}
+              onClick={() => handleClick(item?._id)}
             >
               <span className="img flex h-3/4 w-full ">
                 <img

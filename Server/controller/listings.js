@@ -13,8 +13,13 @@ const getAllListings = async (req, res) => {
   }
 };
 const getListing = async (req, res) => {
-  let listing = await Listings.findById(req.params.id).populate("owner");
-  res.json(listing);
+  try{
+     let listing = await Listings.findById(req.params.id).populate("owner");
+  return res.json(listing);
+  }
+ catch{
+  return res.json({message:"get listing error ln 21"})
+ }
 };
 
 const addListing = async (req, res) => {

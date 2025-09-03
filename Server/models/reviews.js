@@ -16,6 +16,10 @@ const reviewSchema = mongoose.Schema(
       min: 1,
       max: 5,
     },
+       owner: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
   },
   { timestamps: true }
 );

@@ -21,8 +21,8 @@ const userSignUp = async (req, res) => {
 
   res.cookie("nomado-token", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === production,
-    sameSite:process.env.NODE_ENV === production ? "none" :"Lax",
+    secure: process.env.NODE_ENV === "production",
+    sameSite:process.env.NODE_ENV === "production" ? "none" :"Lax",
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
@@ -40,8 +40,8 @@ const userLogin = async (req, res) => {
     let token = jwt.sign({ email, id: user._id }, process.env.TOKEN_KEY);
     res.cookie("nomado-token", token, {
       httpOnly: true,
-     secure: process.env.NODE_ENV === production,
-    sameSite:process.env.NODE_ENV === production ? "none" :"Lax",
+     secure: process.env.NODE_ENV === "production",
+    sameSite:process.env.NODE_ENV === "production" ? "none" :"Lax",
    maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     return res.json({ token, message: "success" });

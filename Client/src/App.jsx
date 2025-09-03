@@ -15,7 +15,7 @@ import { useContext } from "react";
 import { AuthContext } from "./components/Context";
 
 function App() {
-    const { isLogin, setIsLogin, token, setToken,allListings,setAllListings } = useContext(AuthContext);
+    const { setIsLogin,setAllListings } = useContext(AuthContext);
 
 
   const getAllListings = async () => {
