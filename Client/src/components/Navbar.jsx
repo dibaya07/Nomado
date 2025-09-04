@@ -1,28 +1,42 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+// import { useEffect } from "react";
+// import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "./Context.jsx";
 import { useContext } from "react";
 import { MdFormatListBulletedAdd } from "react-icons/md";
 import { IoIosLogIn } from "react-icons/io";
 import { CiLogout } from "react-icons/ci";
+import axios from "axios";
+// import { useEffect } from "react";
 
 const Navbar = () => {
   const { isLogin, setIsLogin, token, setToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const checkLogin = () => {
+  const checkLogin = async () => {
     if (token) {
-      localStorage.removeItem("token");
-      setToken("");
-      setIsLogin(false);
-      navigate(`/`)
-    }else{
-      navigate(`/authForm`)
-      console.log(isLogin)
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/user/logout`,{},
+        {
+          withCredentials: true,
+        }
+      );
+      if (res.status === 200) {
+        localStorage.removeItem("nomado-token");
+        setToken("");
+        setIsLogin(false);
+      }
+    }
+    // navigate(`/`)
+    else {
+      navigate(`/authForm`);
     }
   };
+  // useEffect(() => {
+  //        console.log(isLogin)
+
+  // }, [isLogin])
 
   return (
     <div className=" flex justify-between py-3">
@@ -51,12 +65,13 @@ const Navbar = () => {
         </Link>
 
         <button
-          to={isLogin ? `/` : `/authForm`}
+          // to={isLogin ? `/` : `/authForm`}
           onClick={checkLogin}
           className="menu hidden sm:inline-block  text-center bg-slate-300 py-2 px-3 mx-2
  sm:py-3 sm:px-8 sm:mx-8 rounded-3xl"
         >
           {isLogin ? "Logout" : "Login"}
+          {/* {console.log(isLogin)} */}
         </button>
 
         <button

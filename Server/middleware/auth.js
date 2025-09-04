@@ -4,7 +4,7 @@ const verifyToken =  (req, res, next) => {
   let token = req.cookies["nomado-token"];
   
   if (!token) {
-    console.log("token is missing");
+    // console.log("token is missing");
     req.token = false
     next()
   }else{

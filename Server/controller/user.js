@@ -53,8 +53,8 @@ const userLogin = async (req, res) => {
 const userLogout = (req, res) => {
   res.clearCookie("nomado-token", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === production,
-    sameSite:process.env.NODE_ENV === production ? "none" :"Lax",
+    secure: process.env.NODE_ENV === "production",
+    sameSite:process.env.NODE_ENV === "production" ? "none" :"Lax",
    });
 
   return res.status(200).json({ message: "Logged out successfully" });

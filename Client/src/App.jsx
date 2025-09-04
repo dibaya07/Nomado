@@ -15,13 +15,15 @@ import { useContext } from "react";
 import { AuthContext } from "./components/Context";
 
 function App() {
-    const { setIsLogin,setAllListings } = useContext(AuthContext);
-
+  const {isLogin, setIsLogin, setAllListings } = useContext(AuthContext);
 
   const getAllListings = async () => {
-    let res = await axios.get(`${import.meta.env.VITE_API_URL}/listings`) 
-    setIsLogin(res.data.isToken)
-      setAllListings(res.data.val);
+    let res = await axios.get(`${import.meta.env.VITE_API_URL}/listings`,{
+            withCredentials: true,
+          });
+    // console.log(res.data)
+    setIsLogin(res.data.isToken);
+    setAllListings(res.data.val);
   };
 
   useEffect(() => {
@@ -34,7 +36,7 @@ function App() {
       element: <MainNavigation />,
       children: [
         // { path: "/", element: <Home />, loader: getAllListings },
-        { path: "/", element: <Home />},
+        { path: "/", element: <Home /> },
         { path: "/add-list", element: <AddForm /> },
         { path: "/listingItem", element: <ListingItem /> },
         { path: "/edit/:id", element: <Edit /> },
@@ -52,6 +54,6 @@ function App() {
 
 export default App;
 
-    // let allListings = [];
-    // console.log(res.data.isToken)
-    // console.log(res.data.val)
+// let allListings = [];
+// console.log(res.data.isToken)
+// console.log(res.data.val)

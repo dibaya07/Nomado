@@ -4,13 +4,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./ListingItem.css";
+import Review from "./Review";
 
 export default function ListingItem() {
   const location = useLocation();
   const { itemId } = location.state || {};
   const [listing, setListing] = useState({});
-  const [reviews, setReviews] = useState({});
-  const [allReviews, setAllReviews] = useState([]);
+  // const [reviews, setReviews] = useState({});
+  // const [allReviews, setAllReviews] = useState([]);
   const [currentUser, setCurrentUser] = useState();
 
   const navigate = useNavigate();
@@ -57,27 +58,27 @@ export default function ListingItem() {
 
   // const [rating, setRating] = useState("0")
 
-  const handleReviews = (e) => {
-    let val = e.target.value;
-    // setRating = e.target.value
-    setReviews((prev) => ({ ...prev, [e.target.name]: val, listing: itemId }));
-  };
+  // const handleReviews = (e) => {
+  //   let val = e.target.value;
+  //   // setRating = e.target.value
+  //   setReviews((prev) => ({ ...prev, [e.target.name]: val, listing: itemId }));
+  // };
 
-  const handleReviewSubmit = async () => {
-    await axios.post(`${import.meta.env.VITE_API_URL}/reviews`, reviews, {
-        withCredentials: true,
-      });
-    setReviews({});
-  };
+  // const handleReviewSubmit = async () => {
+  //   await axios.post(`${import.meta.env.VITE_API_URL}/reviews`, reviews, {
+  //       withCredentials: true,
+  //     });
+  //   setReviews({});
+  // };
 
-    const handleReviewDelete = async (id) => {
-    const res = await axios
-      .delete(`${import.meta.env.VITE_API_URL}/reviews/${id}`, {
-        withCredentials: true,
-      });
-      // console.log(res.data)
-      setAllReviews(res.data.reviews)
-    };
+    // const handleReviewDelete = async (id) => {
+    // const res = await axios
+    //   .delete(`${import.meta.env.VITE_API_URL}/reviews/${id}`, {
+    //     withCredentials: true,
+    //   });
+    //   // console.log(res.data)
+    //   setAllReviews(res.data.reviews)
+    // };
       // console.log("ln 77 review deleted");
       // .then(() => {
         // navigate("/listingItem");
@@ -85,17 +86,17 @@ export default function ListingItem() {
 
 
       // {console.log(itemId,"ln 83")}
-  useEffect(() => {
-    const review = async () => {
-      await axios
-        .get(`${import.meta.env.VITE_API_URL}/reviews/${itemId}`)
-        .then((res) => {
-          setAllReviews(res.data);
-          // console.log(res.data[6].owner.username)
-        });
-    };
-    review();
-  }, [reviews]);
+  // useEffect(() => {
+  //   const review = async () => {
+  //     await axios
+  //       .get(`${import.meta.env.VITE_API_URL}/reviews/${itemId}`)
+  //       .then((res) => {
+  //         setAllReviews(res.data);
+  //         // console.log(res.data[6].owner.username)
+  //       });
+  //   };
+  //   review();
+  // }, [reviews]);
 
   return (
     <>
@@ -175,8 +176,8 @@ export default function ListingItem() {
           )}
         </div>
 
-        <div className="review-heading py-6 font-medium text-4xl">Reviews</div>
-        <div className="allReviews flex ">
+        {/*<div className="review-heading py-6 font-medium text-4xl">Reviews</div>
+         <div className="allReviews flex ">
           {allReviews.map((item, index) => {
             return (
               <div
@@ -189,7 +190,6 @@ export default function ListingItem() {
               {item.rating &&  <p className="starability-result" data-rating={item.rating}>
                   Rated: 3 stars
                 </p>}
-                {/* {console.log(item._id)} */}
                 <span>{item.comment}</span>
                 {item?.owner?._id === currentUser && <button
                 className="bg-red-300 py-2 px-4 rounded-lg mx-1"
@@ -200,8 +200,8 @@ export default function ListingItem() {
               </div>
             );
           })}
-        </div>
-        <div className="review  text-black  h-fit p-4 flex flex-col">
+        </div> */}
+        {/* <div className="review  text-black  h-fit p-4 flex flex-col">
           <fieldset className="starability-slot" >
             <legend>rating:</legend>
             <input
@@ -252,7 +252,8 @@ export default function ListingItem() {
           >
             Submit
           </button>
-        </div>
+        </div> */}
+        <Review currentUser={currentUser}/>
       </div>
     </>
   );
