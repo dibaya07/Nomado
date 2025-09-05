@@ -5,7 +5,8 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useContext } from "react";
 import { AuthContext } from "./Context.jsx";
-
+import "./Review.css"
+import TextareaAutosize from 'react-textarea-autosize';
 
 
 
@@ -66,14 +67,14 @@ export default function Review({currentUser}) {
           {allReviews.map((item, index) => {
             return (
               <div
-                className="reviews flex flex-col w-1/2 px-3 py-8 border border-black border-solid"
+                className="reviews flex flex-col w-1/4 px-3 py-4 "
                 key={index}
               >
-                <span>{item.owner?.username}</span>
+                <span className='capitalize font-semibold pb-2'>{item.owner?.username}</span>
               {item.rating &&  <p className="starability-result" data-rating={item.rating}>
                   Rated: 3 stars
                 </p>}
-                <span>{item.comment}</span>
+                <span className='py-2 font-medium opacity-65'>{item.comment}</span>
                 {item?.owner?._id === currentUser && <button
                 className="bg-red-300 py-2 px-4 rounded-lg mx-1"
                 onClick={()=>handleReviewDelete(item._id)}
@@ -85,8 +86,8 @@ export default function Review({currentUser}) {
           })}
         </div>
         <div className="review  text-black  h-fit p-4 flex flex-col">
-          <fieldset className="starability-slot" >
-            <legend>rating:</legend>
+          <fieldset className="starability-slot my-2" >
+            <legend>Rating:</legend>
             <input
               type="radio"
               id="no-rate"
@@ -119,18 +120,20 @@ export default function Review({currentUser}) {
             </label>
           </fieldset>
 
-          <textarea
+          <TextareaAutosize
             name="comment"
             placeholder="Add Review"
-            cols={50}
-            rows={5}
-            className="bg-yellow-100 border-black border border-solid"
+            // cols={50}
+            // rows={5}
+            minRows={3}
+            maxRows={8}
+            className="bg-yellow-100 border-black border border-solid w-1/2"
             value={reviews.comment || ""}
             onChange={handleReviews}
-          ></textarea>
+          ></TextareaAutosize>
           <button
             type="submit"
-            className="bg-green-400 disabled:opacity-75 disabled:cursor-not-allowed"
+            className="bg-green-400 w-1/2 disabled:opacity-75 disabled:cursor-not-allowed"
             onClick={handleReviewSubmit}
             disabled={!isLogin}
           >

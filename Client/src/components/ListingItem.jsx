@@ -3,7 +3,6 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import "./ListingItem.css";
 import Review from "./Review";
 
 export default function ListingItem() {
